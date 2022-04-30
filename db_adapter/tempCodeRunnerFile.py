@@ -1,0 +1,1 @@
+print(db.open_query(procname="proc_tmp_agencias",params={"cod_agen":1} ))

@@ -1,18 +1,75 @@
 from multiprocessing import connection
 import db_adapter
+import pymssql
+from pymssql import _mssql
 
 class DbAdapterMsSql(db_adapter.DbAdapter):
+    
+    __server = ""
+    __user = ""
+    __password = ""
+    __database = ""
 
-    def __init__(self,connection_string):
-        self.connection_string = connection_string
+    def __init__(self,server,user,password,database):
+        self.__server = server
+        self.__user = user
+        self.__password = password
+        self.__database = database
+        self.error_message = ""
+        self.with_error=False
+        self.sql_text=""
 
-    def open_procedure(self,procname,params=[]):
-        data_set = []
+    def open_query(self,params={},select="",procname=""):
+        
+        data_set=[]
+        self.error_message = ""
+        self.with_error=False
+        if len(procname)>0:
+            
+            self.sql_text = self.__build_statement(f"exec {procname} ",params)
+            
+        else:
+            self.sql_text=select
+
+        try:
+            connection = pymssql.connect(server=self.__server, user=self.__user,password=self.__password, database=self.__database)
+        except pymssql.Error as e:
+            self.error_message = e
+            self.with_error=False
+            return []
+
+
+        try:
+            cursor = connection.cursor()
+            cursor.execute(self.sql_text,params)
+            columns = [column[0] for column in cursor.description]
+            data_set = []
+            for row in cursor.fetchall():
+                data_set.append(dict(zip(columns, row)))
+
+        except pymssql.Error as e:
+            self.error_message = e
+            self.with_error=False
+            return []
+            
+        finally:
+            connection.close()
+            
         return data_set
 
-    def execute_procedure(self,procname,params=[]):
+    def execute_statement(self,procname,params=[]):
         print("Ejecutar proc")
 
-db = DbAdapterMsSql("database_name_sql");
-db.open_procedure( "proc_tmp" );
-print(db.connection_string)
+    def __build_statement(self,sql_text,params={}):
+        str_params = ""    
+
+        for key,value in params.items():
+            str_params = str_params +  f" %({key})d," 
+        
+        if len(str_params)>0:
+            str_params = str_params[0:len(str_params) -1]
+        
+        sql_text = sql_text + str_params
+
+        return sql_text
+        
