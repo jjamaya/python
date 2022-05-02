@@ -32,7 +32,7 @@ class DbAdapterMsSql(db_adapter.DbAdapter):
             self.sql_text=select
 
         try:
-            connection = pymssql.connect(server=self.__server, user=self.__user,password=self.__password, database=self.__database)
+            connection = pymssql.connect(server=self.__server, user=self.__user,password=self.__password, database=self.__database, autocommit=True)
         except pymssql.Error as e:
             self.error_message = e
             self.with_error=False
@@ -42,6 +42,7 @@ class DbAdapterMsSql(db_adapter.DbAdapter):
         try:
             cursor = connection.cursor()
             cursor.execute(self.sql_text,params)
+            connection.commit()
             columns = [column[0] for column in cursor.description]
             data_set = []
             for row in cursor.fetchall():
@@ -57,8 +58,37 @@ class DbAdapterMsSql(db_adapter.DbAdapter):
             
         return data_set
 
-    def execute_statement(self,procname,params=[]):
-        print("Ejecutar proc")
+    def execute_statement(self,params=[],statement="",procname=""):        
+        self.error_message = ""
+        self.with_error=False
+        if len(procname)>0:
+            
+            self.sql_text = self.__build_statement(f"exec {procname} ",params)
+            
+        else:
+            self.sql_text=statement
+
+        try:
+            connection = pymssql.connect(server=self.__server, user=self.__user,password=self.__password, database=self.__database, autocommit=True)
+        except pymssql.Error as e:
+            self.error_message = e
+            self.with_error=False
+            return False
+
+        try:
+            cursor = connection.cursor()
+            cursor.execute(self.sql_text,params)
+            connection.commit()
+        except pymssql.Error as e:
+            #connection.rollback()
+            self.error_message = e
+            self.with_error=False
+            return False
+            
+        finally:
+            connection.close()
+            
+        return True
 
     def __build_statement(self,sql_text,params={}):
         str_params = ""    
