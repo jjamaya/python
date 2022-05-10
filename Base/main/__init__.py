@@ -4,19 +4,20 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 import main.resources as resources
+from main.db import dbsql
 
 
 # importar el modulo para crear el api rest
 from flask_restful import Api
 
-api = Api()
+api = Api()  
 
 def create_app():
 
     app = Flask(__name__)
 
     load_dotenv()
-    
+
     #Definir Recursos
     api.add_resource(resources.ClientesResource, "/clientes")
     api.add_resource(resources.ClienteResource,"/cliente/<id>")

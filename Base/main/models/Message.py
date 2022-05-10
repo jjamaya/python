@@ -1,6 +1,6 @@
 import datetime as dt
-from main.db import db_adapter_mssql as dbsql
 import os
+from main.db import dbsql
 
 class Message(object):
     
@@ -47,13 +47,7 @@ class Message(object):
 
     def execute_process(self):
 
-        db = dbsql.DbAdapterMsSql(server=os.getenv("SERVER"),
-                                  user=os.getenv("USER"),
-                                  password=os.getenv("PASWD"),
-                                  database=os.getenv("DATABASE") )
-
-
-        result = db.open_query(procname="proc_agencia", params={"id_agencia":100001})
+        result = dbsql.bd.open_query(procname="proc_agencia", params={"id_agencia":100001})
         dic_agencies = {}
         dic_agencies["agencies"]=result
         self.message_date = dt.datetime.utcnow().isoformat()[:-3]+'Z'
