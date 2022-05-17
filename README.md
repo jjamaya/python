@@ -10,3 +10,7 @@ Video Instalar en IIS.
 Ejemplo Cadena conexion informix:
 
 export CONNECTION_STRING_IFX="DATABASE=ebolenlinea;HOSTNAME=172.18.200.6;PORT=11115; UID=user; PWD=clave; AUTHENTICATION=SERVER"
+
+Determina si el request es un JSON
+if request.get_json():
+  pass
