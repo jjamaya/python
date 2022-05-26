@@ -14,3 +14,7 @@ export CONNECTION_STRING_IFX="DATABASE=ebolenlinea;HOSTNAME=172.18.200.6;PORT=11
 Determina si el request es un JSON
 if request.get_json():
   pass
+  
+
+CODIGOS DE RESPUESTA
+https://developer.mozilla.org/es/docs/Web/HTTP/Status
