@@ -24,3 +24,5 @@ PACKAGE PARA GENERAR LOGS:
 
 import logging
 https://machinelearningmastery.com/logging-in-python/
+
+https://pypi.org/
