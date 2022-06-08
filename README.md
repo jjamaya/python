@@ -18,3 +18,9 @@ if request.get_json():
 
 CODIGOS DE RESPUESTA
 https://developer.mozilla.org/es/docs/Web/HTTP/Status
+
+
+PACKAGE PARA GENERAR LOGS:
+
+import logging
+https://machinelearningmastery.com/logging-in-python/
