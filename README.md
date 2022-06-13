@@ -22,10 +22,12 @@ https://developer.mozilla.org/es/docs/Web/HTTP/Status
 
 PACKAGE PARA GENERAR LOGS:
 
-import logging
+# import logging
 https://machinelearningmastery.com/logging-in-python/
 
 https://pypi.org/
+
+https://betterstack.com/community/guides/logging/how-to-start-logging-with-flask/
 
 # Python Docker
 
