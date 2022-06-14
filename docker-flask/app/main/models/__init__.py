@@ -1,0 +1,1 @@
+from .GenerateCoupon import GenerateCoupon as GenerateCouponModel
