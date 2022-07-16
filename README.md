@@ -58,4 +58,6 @@ python -m venv venv
 3. Put: Actualizar.
 4. Delete: Borar.
 
+### CURL 
 curl -X POST http://localhost:5000/post/1
+curl -d "llave1=dato1&llave2=dato2"  -X POST http://localhost:5000/lele   --Enviar datos
