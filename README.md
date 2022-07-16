@@ -42,3 +42,11 @@ https://pythonlang.dev/repo/tiangolo-uwsgi-nginx-flask-docker/
 # Ambientes virtuales
 
 python -m venv venv
+
+# Flask
+
+### Ejecutar Servidor Flask
+
+1. set FLASK_APP=holamundo.py
+2. set FLASK_ENV=development
+3. flask run
