@@ -50,3 +50,10 @@ python -m venv venv
 1. set FLASK_APP=holamundo.py
 2. set FLASK_ENV=development
 3. flask run
+
+### Metodos Web (Accion a realizar)
+
+1. Get: Consultar o listar.
+2. Post: Crear.
+3. Put: Actualizar.
+4. Delete: Borar.
