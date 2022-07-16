@@ -57,3 +57,5 @@ python -m venv venv
 2. Post: Crear.
 3. Put: Actualizar.
 4. Delete: Borar.
+
+curl -X POST http://localhost:5000/post/1
