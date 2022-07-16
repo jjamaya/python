@@ -37,3 +37,8 @@ https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-flask
 https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask
 
 https://pythonlang.dev/repo/tiangolo-uwsgi-nginx-flask-docker/
+
+
+# Ambientes virtuales
+
+python -m venv venv
