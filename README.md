@@ -52,6 +52,8 @@ python -m venv venv
 2. set FLASK_ENV=development
 3. flask run
 
+https://flask-restful.readthedocs.io/en/latest/intermediate-usage.html
+
 ### Metodos Web (Accion a realizar)
 
 1. Get: Consultar o listar.
