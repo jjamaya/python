@@ -47,7 +47,8 @@ python -m venv venv
 
 ### Ejecutar Servidor Flask
 
-1. set FLASK_APP=holamundo.py
+1. set FLASK_APP=holamundo.py   o   set FLASK_APP=carpeta_principal
+
 2. set FLASK_ENV=development
 3. flask run
 
